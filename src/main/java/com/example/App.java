@@ -17,10 +17,10 @@ public class App {
         for (Product product : products) {
             if (product instanceof Computer) {
                 Computer computer = (Computer) product;
-                System.out.println("Electronic: " + computer.getName() + " - " + computer.getBrand());
+                System.out.println("  Computer: " + computer.getName() + " Brand - " + computer.getBrand());
             } else if (product instanceof Phone) {
                 Phone phone = (Phone) product;
-                System.out.println("Phone: " + phone.getName() + " - " + phone.getCategory());
+                System.out.println("  Phone: " + phone.getName() + " - " + phone.getCategory());
             }
         }
     }

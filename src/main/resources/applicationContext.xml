@@ -15,7 +15,7 @@
     <bean id="phone" class="com.example.Phone">
         <property name="name" value="iphone" />
         <property name="price" value="2.5" />
-        <property name="category" value="Phone" />
+        <property name="category" value="Smartphone" />
     </bean>
 
     <bean id="shop" class="com.example.Shop">
