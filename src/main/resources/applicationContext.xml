@@ -9,13 +9,13 @@
     <bean id="computer" class="com.example.Computer">
         <property name="name" value="Laptop" />
         <property name="price" value="1000.0" />
-        <property name="brand" value="HP" />
+        <constructor-arg name="brand" value="HP" />
     </bean>
 
     <bean id="phone" class="com.example.Phone">
-        <property name="name" value="iphone" />
+        <property name="name" value="Iphone" />
         <property name="price" value="2.5" />
-        <property name="category" value="Smartphone" />
+        <constructor-arg name="category" value="Smartphone" />
     </bean>
 
     <bean id="shop" class="com.example.Shop">
