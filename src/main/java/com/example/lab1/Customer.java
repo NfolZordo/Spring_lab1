@@ -1,4 +1,4 @@
-package com.example;
+package com.example.lab1;
 
 public class Customer {
     private String name;

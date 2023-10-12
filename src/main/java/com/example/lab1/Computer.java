@@ -1,4 +1,4 @@
-package com.example;
+package com.example.lab1;
 
 public class Computer extends Product {
     private String brand;

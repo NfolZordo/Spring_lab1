@@ -3,33 +3,34 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:component-scan base-package="your.package.name" />
 
-    <context:property-placeholder location="classpath:myApp.properties" />
+<!--    <context:property-placeholder location="classpath:myApp.properties" />-->
 
-    <bean id="computer" class="com.example.Computer">
-        <property name="name" value="Laptop" />
-        <property name="price" value="1000.0" />
-        <constructor-arg name="brand" value="HP" />
-    </bean>
+<!--    <bean id="computer" class="com.example.lab1.Computer">-->
+<!--        <property name="name" value="Laptop" />-->
+<!--        <property name="price" value="1000.0" />-->
+<!--        <constructor-arg name="brand" value="HP" />-->
+<!--    </bean>-->
 
-    <bean id="phone" class="com.example.Phone">
-        <property name="name" value="Iphone" />
-        <property name="price" value="2.5" />
-        <constructor-arg name="category" value="Smartphone" />
-    </bean>
+<!--    <bean id="phone" class="com.example.lab1.Phone">-->
+<!--        <property name="name" value="Iphone" />-->
+<!--        <property name="price" value="2.5" />-->
+<!--        <constructor-arg name="category" value="Smartphone" />-->
+<!--    </bean>-->
 
-    <bean id="shop" class="com.example.Shop">
-        <property name="name" value="${shop.name}" />
-        <property name="products">
-            <list>
-                <ref bean="computer" />
-                <ref bean="phone" />
-            </list>
-        </property>
-    </bean>
+<!--    <bean id="shop" class="com.example.lab1.Shop">-->
+<!--        <property name="name" value="${shop.name}" />-->
+<!--        <property name="products">-->
+<!--            <list>-->
+<!--                <ref bean="computer" />-->
+<!--                <ref bean="phone" />-->
+<!--            </list>-->
+<!--        </property>-->
+<!--    </bean>-->
 
-    <bean id="customer" class="com.example.Customer">
-        <property name="name" value="${customer.name}" />
-        <property name="shop" ref="shop" />
-    </bean>
+<!--    <bean id="customer" class="com.example.lab1.Customer">-->
+<!--        <property name="name" value="${customer.name}" />-->
+<!--        <property name="shop" ref="shop" />-->
+<!--    </bean>-->
 </beans>

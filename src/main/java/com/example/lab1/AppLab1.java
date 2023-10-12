@@ -1,10 +1,10 @@
-package com.example;
+package com.example.lab1;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.List;
 
-public class App {
+public class AppLab1 {
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         Customer customer = context.getBean("customer", Customer.class);
