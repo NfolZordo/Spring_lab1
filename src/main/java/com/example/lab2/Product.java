@@ -6,6 +6,4 @@ import org.springframework.stereotype.Component;
 public interface Product {
     String getName();
     double getPrice();
-
-
 }

@@ -9,13 +9,14 @@ import java.util.List;
 @Component
 public class Shop {
     private List<Product> products;
-    @Value("MyShop")
+
+    @Value("${shop.name}")
+    @Autowired
     private String name;
 
     @Autowired
-    public Shop(List<Product> products, String name) {
+    public Shop(List<Product> products) {
         this.products = products;
-        this.name = name;
     }
 
     public List<Product> getProducts() {

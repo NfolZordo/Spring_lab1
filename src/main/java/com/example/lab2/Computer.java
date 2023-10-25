@@ -13,7 +13,6 @@ public class Computer implements Product {
     @Value("1000.0")
     private double price;
 
-
     @Override
     public String getName() {
         return name;

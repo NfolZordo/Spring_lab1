@@ -1,10 +1,18 @@
 package com.example.lab2;
 
+import lombok.Getter;
+import lombok.Setter;
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
+@Qualifier("phone")
+@Getter
+@Setter
 public class Phone implements Product {
 
     @Value("${phone.category}")
@@ -14,37 +22,19 @@ public class Phone implements Product {
     private String name;
 
     @Value("${phone.price}")
+    private String priceStr;
     private double price;
-
-//
-//    @Autowired
-//    public Phone(String category, String name, double price) {
-//        this.category = category;
-//        this.name = name;
-//        this.price = price;
-//    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public double getPrice() {
-        return price;
+        return Double.parseDouble(priceStr);
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    @PostConstruct
+    public void init() {
+        System.out.println("--- Phone bean is being initialized.");
+    }
+
+    @PreDestroy
+    public void destroy() {
+        System.out.println("--- Phone bean is being destroyed.");
     }
 }
