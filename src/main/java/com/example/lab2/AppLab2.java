@@ -13,10 +13,11 @@ public class AppLab2 {
 
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+
         Customer customer = context.getBean(Customer.class);
 
         List<Product> products = customer.getShop().getProducts();
-        System.out.println("Customer Name: " + customer.getName());
+        System.out.println("\nCustomer Name: " + customer.getName());
         System.out.println("Shop Name: " + customer.getShop().getName());
         System.out.println("Products:");
         for (Product product : products) {
