@@ -1,13 +1,13 @@
-package com.example.lab2;
+package com.example.lab3;
 
 import lombok.Getter;
 import lombok.Setter;
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 @Component
 @Qualifier("phone")
