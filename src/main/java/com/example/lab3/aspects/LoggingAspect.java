@@ -26,14 +26,16 @@ public class LoggingAspect {
 
     @Before("pointcutName() && !pointcutProduct()")
     public void beforeNameNotProduct() {
-        System.out.println(" ***** getName metod ****");
+        System.out.println(" ***** getName metod *****");
     }
+
     @Before("pointcutPhone()")
     public void beforeGetPhone() {
-        System.out.println(" *** getPhone metogs ****");
+        System.out.println(" *** getPhone metogs ***");
     }
+
     @Before("pointcutProductPrice() && !pointcutPhone()")
     public void logMethodCall2() {
-        System.out.println(" ******** getPrice metod ****");
+        System.out.println(" ******** getPrice metod *******");
     }
 }
