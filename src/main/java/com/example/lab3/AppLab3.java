@@ -14,7 +14,7 @@ public class AppLab3 {
         Customer customer = context.getBean(Customer.class);
 
         List<Product> products = customer.getShop().getProducts();
-        System.out.println("\nCustomer Name: " + customer.getName());
+        System.out.println("Customer Name: " + customer.getName());
         System.out.println("Shop Name: " + customer.getShop().getName());
         System.out.println("Products:");
         for (Product product : products) {

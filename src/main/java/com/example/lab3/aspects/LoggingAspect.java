@@ -9,27 +9,31 @@ import org.springframework.stereotype.Component;
 public class LoggingAspect {
 
     @Pointcut("execution(* getName*(..))")
-    public void appLab3Methods() {
+    public void pointcutName() {
     }
 
-    @Pointcut("execution(* com.example.lab3.Phone.getPrice*(..))")
-    public void appLab3Methods2() {
+    @Pointcut("execution(* com.example.lab3.Phone.*(..))")
+    public void pointcutPhone() {
     }
 
     @Pointcut("execution(* com.example.lab3.Product.getPrice*(..))")
-    public void appLab3Methods3() {
+    public void pointcutProductPrice() {
     }
 
-    @Pointcut("execution(* com.example.lab3.Product.*(..))")
-    public void appLab3Methods4() {
+    @Pointcut("execution(* com.example.lab3.Product.get*(..))")
+    public void pointcutProduct() {
     }
 
-    @Before("appLab3Methods() && !appLab3Methods4()")
-    public void logMethodCall() {
-        System.out.println(" ****** getName Aspect ****");
+    @Before("pointcutName() && !pointcutProduct()")
+    public void beforeNameNotProduct() {
+        System.out.println(" ***** getName metod ****");
     }
-    @Before("appLab3Methods3() && !appLab3Methods2()")
+    @Before("pointcutPhone()")
+    public void beforeGetPhone() {
+        System.out.println(" *** getPhone metogs ****");
+    }
+    @Before("pointcutProductPrice() && !pointcutPhone()")
     public void logMethodCall2() {
-        System.out.println(" ****** getPrice Aspect ****");
+        System.out.println(" ******** getPrice metod ****");
     }
 }
