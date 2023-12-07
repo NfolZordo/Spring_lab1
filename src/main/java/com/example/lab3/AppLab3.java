@@ -1,5 +1,7 @@
 package com.example.lab3;
 
+import com.example.lab3.model.Shop;
+import com.example.lab3.repositoriy.ShopRepository;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
