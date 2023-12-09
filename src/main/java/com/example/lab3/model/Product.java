@@ -31,7 +31,7 @@ public class Product {
     @Column(nullable = false)
     private String category;
 
-    @ManyToMany(mappedBy = "products")
-    private Set<Customer> customers;
+//    @ManyToMany(mappedBy = "products")
+//    private Set<Customer> customers;
 
 }

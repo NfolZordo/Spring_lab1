@@ -33,13 +33,12 @@ public class Customer {
     @JoinColumn(name = "shop_id", nullable = false)
     private Shop shop;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "customer_product",
             joinColumns = @JoinColumn(name = "customer_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id")
     )
-    @JsonIgnore
     private Set<Product> products;
 
 }
