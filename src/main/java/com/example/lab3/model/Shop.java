@@ -5,7 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.stereotype.Component;
+
+import java.util.Set;
 
 @Entity
 @Getter
@@ -22,4 +23,11 @@ public class Shop {
 
     private String address;
 
+    @OneToMany(mappedBy = "shop", fetch = FetchType.LAZY)
+    private Set<ProductsPrice> productsPrices;
+
+    public Shop(String name, String address) {
+        this.name = name;
+        this.address = address;
+    }
 }

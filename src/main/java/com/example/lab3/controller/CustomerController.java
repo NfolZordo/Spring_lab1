@@ -2,18 +2,24 @@ package com.example.lab3.controller;
 
 import com.example.lab3.model.Customer;
 import com.example.lab3.model.Product;
+import com.example.lab3.model.ProductsPrice;
 import com.example.lab3.model.Shop;
 import com.example.lab3.repository.CustomerRepository;
 import com.example.lab3.repository.ProductsRepository;
 import com.example.lab3.repository.ShopRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/customer")
@@ -26,14 +32,12 @@ public class CustomerController {
     @Autowired
     private ProductsRepository productRepository;
 
-    // Отримати всіх покупців
     @GetMapping("/getAllCustomers")
     public ResponseEntity<Iterable<Customer>> getAllCustomers() {
         Iterable<Customer> customers = customerRepository.findAll();
         return ResponseEntity.ok(customers);
     }
 
-    // Отримати покупця за ідентифікатором
     @GetMapping("/{id}")
     @Transactional
     public ResponseEntity<Customer> getCustomerById(@PathVariable Integer id) {
@@ -44,29 +48,31 @@ public class CustomerController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // Зберегти нового покупця
     @PostMapping("/saveCustomer")
     public ResponseEntity<Customer> saveCustomer(
             @RequestParam String name,
             @RequestParam Integer phone,
             @RequestParam Integer shopId
     ) {
-        Optional<Shop> shopOptional = shopRepository.findById(shopId);
+        try {
+            Optional<Shop> shopOptional = shopRepository.findById(shopId);
 
-        if (shopOptional.isPresent()) {
-            Shop shop = shopOptional.get();
-            Customer customer = new Customer();
-            customer.setName(name);
-            customer.setPhone(phone);
-            customer.setShop(shop);
-            Customer savedCustomer = customerRepository.save(customer);
-            return ResponseEntity.ok(savedCustomer);
-        } else {
-            return ResponseEntity.notFound().build();
+            if (shopOptional.isPresent()) {
+                Shop shop = shopOptional.get();
+                Customer customer = new Customer();
+                customer.setName(name);
+                customer.setPhone(phone);
+                customer.setShop(shop);
+                Customer savedCustomer = customerRepository.save(customer);
+                return ResponseEntity.ok(savedCustomer);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 
-    // Видалити покупця за ідентифікатором
     @DeleteMapping("/deleteCustomer/{id}")
     public ResponseEntity<Void> deleteCustomer(@PathVariable Integer id) {
         customerRepository.deleteById(id);
@@ -97,5 +103,20 @@ public class CustomerController {
             return ResponseEntity.notFound().build();
         }
     }
-    
+
+    @GetMapping("/getProductsAndPricesByPhone")
+    public ResponseEntity<Map<String, List<Double>>> getProductsAndPricesByPhone(@RequestParam Integer phone) {
+        Customer customer = customerRepository.findByPhone(phone);
+        Map<String, List<Double>> productsAndPrices = new HashMap<>();
+        for (Product product : customer.getProducts()) {
+            List<Double> prices = productRepository.findPriceByProductAndCustomer(product.getId(), customer.getShop().getId())
+                    .stream()
+                    .map(result -> Double.valueOf(result[2].toString()))
+                    .collect(Collectors.toList());
+            productsAndPrices.put(product.getName(), prices);
+        }
+
+        return ResponseEntity.ok(productsAndPrices);
+    }
+
 }
