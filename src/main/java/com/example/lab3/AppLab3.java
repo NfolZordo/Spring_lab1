@@ -1,29 +1,11 @@
 package com.example.lab3;
 
-import com.example.lab3.config.AppConfig;
-import com.example.lab3.repositoriy.ShopRepository;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@ComponentScan(basePackages = "com.example.lab3.config")
+@SpringBootApplication
 public class AppLab3 {
-
     public static void main(String[] args) {
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
-        // Create the Spring application context
-
-        // Get the ShopRepository bean from the context
-        ShopRepository shopRepository = context.getBean(ShopRepository.class);
-//
-//        // Call the findAll() method on the ShopRepository instance
-//        Iterable<Shop> shops = shopRepository.findAll();
-//
-//        // Print or process the result as needed
-//        for (Shop shop : shops) {
-//            System.out.println(shop);
-//        }
-//
-//        // Close the application context
-//        context.close();
+        SpringApplication.run(AppLab3.class, args);
     }
 }
